@@ -2,25 +2,26 @@ import Hero from "@/components/Hero";
 import ProductCard from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { sampleProducts } from "@/data/products";
+import { getProducts } from "@/store/products";
 import { ArrowRight, Smartphone, Building, Cog } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Index = () => {
-  const featuredProducts = sampleProducts.filter(product => product.featured);
+  const allProducts = getProducts();
+  const featuredProducts = allProducts.filter(product => product.featured);
   
   const categories = [
     {
       name: "Coffee & Beverage",
       icon: Smartphone,
       description: "Professional coffee machines, grinders, and beverage equipment",
-      count: sampleProducts.filter(p => p.category === "Coffee & Beverage").length
+      count: allProducts.filter(p => p.category === "Coffee & Beverage").length
     },
     {
       name: "Baking & Cooking", 
       icon: Building,
       description: "Commercial ovens, pizza ovens, and professional cooking equipment",
-      count: sampleProducts.filter(p => p.category === "Baking & Cooking").length
+      count: allProducts.filter(p => p.category === "Baking & Cooking").length
     }
   ];
 

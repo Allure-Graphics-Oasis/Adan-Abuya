@@ -13,6 +13,7 @@ export interface Product {
   category: string;
   condition: "Excellent" | "Good" | "Fair";
   featured?: boolean;
+  stock?: number;
 }
 
 interface ProductCardProps {

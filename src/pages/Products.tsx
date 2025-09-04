@@ -3,7 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import ProductCard from "@/components/ProductCard";
-import { sampleProducts, categories } from "@/data/products";
+import { categories } from "@/data/products";
+import { getProducts } from "@/store/products";
 import { Search, Filter } from "lucide-react";
 
 const Products = () => {
@@ -11,7 +12,8 @@ const Products = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedCondition, setSelectedCondition] = useState("All");
 
-  const filteredProducts = sampleProducts.filter((product) => {
+  const allProducts = getProducts();
+  const filteredProducts = allProducts.filter((product) => {
     const matchesSearch = product.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          product.description.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory === "All" || product.category === selectedCategory;
@@ -106,7 +108,7 @@ const Products = () => {
         {/* Results Count */}
         <div className="mb-6">
           <p className="text-muted-foreground">
-            Showing {filteredProducts.length} of {sampleProducts.length} products
+            Showing {filteredProducts.length} of {allProducts.length} products
           </p>
         </div>
 

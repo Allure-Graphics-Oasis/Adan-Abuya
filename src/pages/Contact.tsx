@@ -38,7 +38,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground">Phone</h3>
-                  <p className="text-muted-foreground">+254 700 000 000</p>
+                  <p className="text-muted-foreground">+254 114 100 019 | +254 720 983 015</p>
                   <p className="text-sm text-muted-foreground">Call us for immediate assistance</p>
                 </div>
               </div>
@@ -49,10 +49,10 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground">WhatsApp</h3>
-                  <p className="text-muted-foreground">+254 700 000 000</p>
+                  <p className="text-muted-foreground">+44 7914 344843</p>
                   <Button variant="secondary" size="sm" className="mt-2" asChild>
                     <a 
-                      href="https://wa.me/254700000000?text=Hi, I'd like to inquire about your equipment"
+                      href="https://wa.me/+447914344843?text=Hi, I'd like to inquire about your equipment"
                       target="_blank"
                       rel="noopener noreferrer"
                     >

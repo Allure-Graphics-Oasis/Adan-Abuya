@@ -10,6 +10,7 @@ const Navbar = () => {
   const navigation = [
     { name: "Home", href: "/" },
     { name: "Products", href: "/products" },
+    { name: "Admin", href: "/admin" },
     { name: "About", href: "/about" },
     { name: "Contact", href: "/contact" },
   ];
@@ -23,9 +24,9 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link to="/" className="flex-shrink-0 flex items-center">
               <div className="bg-gradient-primary p-2 rounded-lg">
-                <span className="text-primary-foreground font-bold text-xl">SE</span>
+                <span className="text-primary-foreground font-bold text-xl">AXUK</span>
               </div>
-              <span className="ml-2 text-xl font-bold text-primary">SecondEquip</span>
+              <span className="ml-2 text-xl font-bold text-primary">Adan-Abuya</span>
             </Link>
           </div>
 
