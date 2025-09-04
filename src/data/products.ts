@@ -3,84 +3,83 @@ import { Product } from "@/components/ProductCard";
 export const sampleProducts: Product[] = [
   {
     id: "1",
-    title: "Office Desk - Executive Model",
-    description: "Large wooden executive desk with drawers. Perfect for home office or business use.",
-    price: "15,000",
-    image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=400&fit=crop",
-    category: "Business",
+    title: "Crux Coffee Grinder",
+    description: "Professional Crux coffee grinder, perfect for cafes and restaurants. Consistent grind quality.",
+    price: "45,000",
+    image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&h=400&fit=crop",
+    category: "Coffee & Beverage",
     condition: "Excellent",
     featured: true
   },
   {
     id: "2", 
-    title: "Samsung 43\" Smart TV",
-    description: "Crystal clear display with smart features. Excellent condition, barely used.",
-    price: "25,000",
-    image: "https://images.unsplash.com/photo-1593784991095-a205069470b6?w=400&h=400&fit=crop",
-    category: "Household",
+    title: "Wega Commercial Espresso Machine",
+    description: "High-performance Wega commercial espresso machine. Ex-UK quality for professional use.",
+    price: "125,000",
+    image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&h=400&fit=crop",
+    category: "Coffee & Beverage",
     condition: "Excellent",
     featured: true
   },
   {
     id: "3",
-    title: "Industrial Air Compressor",
-    description: "Heavy-duty air compressor suitable for workshop and industrial applications.",
-    price: "45,000",
-    image: "https://images.unsplash.com/photo-1581244277943-fe4a9c777189?w=400&h=400&fit=crop",
-    category: "Industrial",
-    condition: "Good",
+    title: "Double Deck Pizza Oven",
+    description: "Commercial double deck pizza oven. Perfect for restaurants and pizzerias. Ex-UK import.",
+    price: "185,000",
+    image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&h=400&fit=crop",
+    category: "Baking & Cooking",
+    condition: "Excellent",
     featured: true
   },
   {
     id: "4",
-    title: "Leather Office Chair",
-    description: "Ergonomic leather office chair with adjustable height and lumbar support.",
-    price: "8,500",
-    image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=400&fit=crop",
-    category: "Business",
+    title: "Mazzer Coffee Grinder",
+    description: "Professional Mazzer type coffee grinder with precision grinding capabilities.",
+    price: "52,000",
+    image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&h=400&fit=crop",
+    category: "Coffee & Beverage",
     condition: "Good"
   },
   {
     id: "5",
-    title: "Refrigerator - Double Door",
-    description: "Energy efficient double door refrigerator. Great for family use.",
-    price: "35,000",
-    image: "https://images.unsplash.com/photo-1571175351790-4565fa4bdb09?w=400&h=400&fit=crop",
-    category: "Household",
+    title: "Automatic Espresso Machine (Nespresso Style)",
+    description: "High-quality automatic espresso machine with Nespresso-style functionality.",
+    price: "85,000",
+    image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&h=400&fit=crop",
+    category: "Coffee & Beverage",
     condition: "Excellent"
   },
   {
     id: "6",
-    title: "Welding Machine",
-    description: "Professional welding machine with accessories. Perfect for metalwork.",
-    price: "22,000",
-    image: "https://images.unsplash.com/photo-1581244277943-fe4a9c777189?w=400&h=400&fit=crop",
-    category: "Industrial",
+    title: "Electric Kettle - Commercial Grade",
+    description: "Heavy-duty commercial electric kettle for high-volume beverage preparation.",
+    price: "15,000",
+    image: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400&h=400&fit=crop",
+    category: "Coffee & Beverage",
     condition: "Good"
   },
   {
     id: "7",
-    title: "Dining Table Set",
-    description: "Beautiful wooden dining table with 6 chairs. Great for family dining.",
-    price: "18,000",
-    image: "https://images.unsplash.com/photo-1449247709967-d4461a6a6103?w=400&h=400&fit=crop",
-    category: "Household",
-    condition: "Good"
+    title: "Blodgett Commercial Convection Oven",
+    description: "Professional Blodgett convection oven for commercial kitchen operations.",
+    price: "225,000",
+    image: "https://images.unsplash.com/photo-1574758347884-dee5619d3ef1?w=400&h=400&fit=crop",
+    category: "Baking & Cooking",
+    condition: "Excellent"
   },
   {
     id: "8",
-    title: "Conference Table",
-    description: "Large conference table perfect for meetings and presentations.",
-    price: "28,000",
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=400&fit=crop",
-    category: "Business",
-    condition: "Excellent"
+    title: "Commercial Coffee Grinder - Heavy Duty",
+    description: "Industrial-grade coffee grinder suitable for high-volume coffee shops.",
+    price: "68,000",
+    image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&h=400&fit=crop",
+    category: "Coffee & Beverage",
+    condition: "Good"
   }
 ];
 
 export const categories = [
   "All",
-  "Household",
-  "Business", 
-  "Industrial"
+  "Coffee & Beverage",
+  "Baking & Cooking"
 ] as const;

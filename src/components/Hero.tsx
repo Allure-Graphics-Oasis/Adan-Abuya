@@ -1,16 +1,35 @@
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Phone, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import heroImage from "@/assets/hero-image.jpg";
+import { useState, useEffect } from "react";
+import slide1 from "@/assets/slide-1.jpg";
+import slide2 from "@/assets/slide-2.jpg";
+import slide3 from "@/assets/slide-3.jpg";
 
 const Hero = () => {
+  const slides = [slide1, slide2, slide3];
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [slides.length]);
+
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-      {/* Background Image with Overlay */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroImage})` }}
-      >
+      {/* Background Slideshow */}
+      <div className="absolute inset-0">
+        {slides.map((slide, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ${
+              index === currentSlide ? 'opacity-100' : 'opacity-0'
+            }`}
+            style={{ backgroundImage: `url(${slide})` }}
+          />
+        ))}
         <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-primary/50"></div>
       </div>
       
@@ -18,12 +37,12 @@ const Hero = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground mb-6 leading-tight">
-            Quality Second-Hand
+            Quality Ex-UK
             <span className="block text-secondary"> Equipment & More</span>
           </h1>
           
           <p className="text-xl md:text-2xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Discover premium pre-owned household, business, and industrial equipment. 
+            Premium reusable equipment exported from the UK. Specializing in coffee, beverage, and commercial baking equipment.
             Quality guaranteed, prices that make sense.
           </p>
           

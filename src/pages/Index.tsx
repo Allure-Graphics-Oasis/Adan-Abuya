@@ -11,22 +11,16 @@ const Index = () => {
   
   const categories = [
     {
-      name: "Household",
+      name: "Coffee & Beverage",
       icon: Smartphone,
-      description: "TVs, appliances, furniture and more for your home",
-      count: sampleProducts.filter(p => p.category === "Household").length
+      description: "Professional coffee machines, grinders, and beverage equipment",
+      count: sampleProducts.filter(p => p.category === "Coffee & Beverage").length
     },
     {
-      name: "Business", 
+      name: "Baking & Cooking", 
       icon: Building,
-      description: "Office furniture, equipment and business solutions",
-      count: sampleProducts.filter(p => p.category === "Business").length
-    },
-    {
-      name: "Industrial",
-      icon: Cog,
-      description: "Heavy machinery, tools and industrial equipment", 
-      count: sampleProducts.filter(p => p.category === "Industrial").length
+      description: "Commercial ovens, pizza ovens, and professional cooking equipment",
+      count: sampleProducts.filter(p => p.category === "Baking & Cooking").length
     }
   ];
 
@@ -112,10 +106,10 @@ const Index = () => {
       <section className="py-16 bg-gradient-card">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Why Choose SecondEquip?
+            Why Choose ExUK Equipment?
           </h2>
           <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto">
-            We make buying second-hand equipment simple, safe, and affordable
+            We make buying ex-UK equipment simple, safe, and affordable
           </p>
           
           <div className="grid md:grid-cols-4 gap-8">
