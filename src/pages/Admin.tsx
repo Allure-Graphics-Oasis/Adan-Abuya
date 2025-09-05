@@ -1,10 +1,10 @@
-import { useMemo, useState } from "react";
-import { getProducts, updateProduct, createProduct, deleteProduct, resetProducts } from "@/store/products";
+import { useMemo, useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { apiClient } from "@/lib/api";
 import type { Product } from "@/components/ProductCard";
 
 
@@ -32,13 +32,31 @@ async function searchUnsplashFirstImage(query: string): Promise<string | null> {
 }
 
 function useProductsState() {
-	const [version, setVersion] = useState(0);
-	const products = useMemo(() => getProducts(), [version]);
-	const refresh = () => setVersion((v) => v + 1);
-	return { products, refresh };
+	const [products, setProducts] = useState<Product[]>([]);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState<string | null>(null);
+
+	const fetchProducts = async () => {
+		try {
+			setLoading(true);
+			const data = await apiClient.getProducts();
+			setProducts(data);
+			setError(null);
+		} catch (err) {
+			setError(err instanceof Error ? err.message : 'Failed to fetch products');
+		} finally {
+			setLoading(false);
+		}
+	};
+
+	useEffect(() => {
+		fetchProducts();
+	}, []);
+
+	return { products, loading, error, refresh: fetchProducts };
 }
 
-const emptyDraft: Omit<Product, "id"> = {
+const emptyDraft: Omit<Product, "id" | "_id"> = {
 	title: "",
 	description: "",
 	price: "",
@@ -49,23 +67,39 @@ const emptyDraft: Omit<Product, "id"> = {
 };
 
 const Admin = () => {
-	const { products, refresh } = useProductsState();
-	const [isAuthed, setIsAuthed] = useState<boolean>(() => {
-		return localStorage.getItem("app.admin.authed") === "true";
-	});
+	const { products, loading, error, refresh } = useProductsState();
+	const [isAuthed, setIsAuthed] = useState<boolean>(false);
+	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [editing, setEditing] = useState<Product | null>(null);
-	const [draft, setDraft] = useState<Omit<Product, "id">>(emptyDraft);
+	const [draft, setDraft] = useState<Omit<Product, "id" | "_id">>(emptyDraft);
 	const [imgQuery, setImgQuery] = useState("");
 	const [isSearching, setIsSearching] = useState(false);
 	const [localFile, setLocalFile] = useState<File | null>(null);
+	const [user, setUser] = useState<any>(null);
 
-	const doLogin = () => {
-		if (password.trim() === (import.meta.env.VITE_ADMIN_PASSWORD || "admin123")) {
-			localStorage.setItem("app.admin.authed", "true");
+	useEffect(() => {
+		const checkAuth = async () => {
+			try {
+				const response = await apiClient.verifyToken();
+				if (response.valid) {
+					setIsAuthed(true);
+					setUser(response.user);
+				}
+			} catch (err) {
+				apiClient.logout();
+			}
+		};
+		checkAuth();
+	}, []);
+
+	const doLogin = async () => {
+		try {
+			const response = await apiClient.login(email, password);
 			setIsAuthed(true);
-		} else {
-			alert("Invalid password");
+			setUser(response.user);
+		} catch (err) {
+			alert(err instanceof Error ? err.message : "Login failed");
 		}
 	};
 
@@ -82,28 +116,40 @@ const Admin = () => {
 		});
 	};
 
-	const saveEdit = () => {
+	const saveEdit = async () => {
 		if (!editing) return;
-		updateProduct({ ...editing, ...draft });
-		setEditing(null);
-		setDraft(emptyDraft);
-		refresh();
-	};
-
-	const addNew = () => {
-		const created = createProduct(draft);
-		setEditing(created);
-		setDraft({ ...draft });
-		refresh();
-	};
-
-	const remove = (id: string) => {
-		if (!confirm("Delete this product?")) return;
-		deleteProduct(id);
-		if (editing?.id === id) {
+		try {
+			await apiClient.updateProduct(editing._id || editing.id, draft);
 			setEditing(null);
+			setDraft(emptyDraft);
+			refresh();
+		} catch (err) {
+			alert(err instanceof Error ? err.message : "Failed to update product");
 		}
-		refresh();
+	};
+
+	const addNew = async () => {
+		try {
+			const response = await apiClient.createProduct(draft);
+			setEditing(response.product);
+			setDraft({ ...draft });
+			refresh();
+		} catch (err) {
+			alert(err instanceof Error ? err.message : "Failed to create product");
+		}
+	};
+
+	const remove = async (id: string) => {
+		if (!confirm("Delete this product?")) return;
+		try {
+			await apiClient.deleteProduct(id);
+			if (editing?.id === id) {
+				setEditing(null);
+			}
+			refresh();
+		} catch (err) {
+			alert(err instanceof Error ? err.message : "Failed to delete product");
+		}
 	};
 
 	const searchAndApplyImage = async () => {
@@ -112,9 +158,13 @@ const Admin = () => {
 		const query = imgQuery || draft.title || editing.title;
 		const url = await searchUnsplashFirstImage(query);
 		if (url) {
-			updateProduct({ ...editing, image: url });
-			setDraft((d) => ({ ...d, image: url }));
-			refresh();
+			try {
+				await apiClient.updateProduct(editing._id || editing.id, { image: url });
+				setDraft((d) => ({ ...d, image: url }));
+				refresh();
+			} catch (err) {
+				alert(err instanceof Error ? err.message : "Failed to update image");
+			}
 		} else {
 			alert("No image found or API key missing.");
 		}
@@ -124,16 +174,22 @@ const Admin = () => {
 	const onLocalFileChange = async (file: File | null) => {
 		setLocalFile(file);
 		if (!file) return;
-		const reader = new FileReader();
-		reader.onload = () => {
-			const url = String(reader.result || "");
-			setDraft((d) => ({ ...d, image: url }));
+		
+		try {
+			console.log('Uploading file:', file.name, file.type, file.size);
+			const response = await apiClient.uploadImage(file);
+			console.log('Upload response:', response);
+			const imageUrl = apiClient.getImageUrl(response.imageId);
+			console.log('Generated image URL:', imageUrl);
+			setDraft((d) => ({ ...d, image: imageUrl }));
 			if (editing) {
-				updateProduct({ ...editing, image: url });
+				await apiClient.updateProduct(editing._id || editing.id, { image: imageUrl });
 				refresh();
 			}
-		};
-		reader.readAsDataURL(file);
+		} catch (err) {
+			console.error('Upload error:', err);
+			alert(err instanceof Error ? err.message : "Failed to upload image");
+		}
 	};
 
 	if (!isAuthed) {
@@ -143,13 +199,19 @@ const Admin = () => {
 					<CardContent className="p-6 space-y-4">
 						<h2 className="text-2xl font-bold">Admin Login</h2>
 						<Input
+							type="email"
+							placeholder="Enter email"
+							value={email}
+							onChange={(e) => setEmail(e.target.value)}
+						/>
+						<Input
 							type="password"
-							placeholder="Enter admin password"
+							placeholder="Enter password"
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}
 						/>
 						<Button onClick={doLogin} className="w-full">Login</Button>
-						<p className="text-xs text-muted-foreground">Default: admin123 or set VITE_ADMIN_PASSWORD</p>
+						<p className="text-xs text-muted-foreground">Use admin or merchant credentials</p>
 					</CardContent>
 				</Card>
 			</div>
@@ -159,10 +221,12 @@ const Admin = () => {
 	return (
 		<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 			<div className="flex items-center justify-between mb-6">
-				<h1 className="text-3xl font-bold">Admin Dashboard</h1>
+				<div>
+					<h1 className="text-3xl font-bold">Admin Dashboard</h1>
+					<p className="text-muted-foreground">Welcome, {user?.name} ({user?.role})</p>
+				</div>
 				<div className="space-x-2">
-					<Button variant="outline" onClick={() => { resetProducts(); refresh(); }}>Reset to Sample</Button>
-					<Button variant="secondary" onClick={() => { localStorage.removeItem("app.admin.authed"); setIsAuthed(false); }}>Logout</Button>
+					<Button variant="secondary" onClick={() => { apiClient.logout(); setIsAuthed(false); setUser(null); }}>Logout</Button>
 				</div>
 			</div>
 
@@ -221,21 +285,27 @@ const Admin = () => {
 
 				<Card className="lg:col-span-2 border-border">
 					<CardContent className="p-6">
-						<div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-							{products.map((p) => (
-								<div key={p.id} className="border rounded-lg overflow-hidden">
-									<img src={p.image} alt={p.title} className="w-full aspect-square object-cover" />
-									<div className="p-3 space-y-1">
-										<p className="font-semibold line-clamp-1">{p.title}</p>
-										<p className="text-sm text-muted-foreground line-clamp-2">{p.description}</p>
-										<div className="flex items-center justify-between pt-2">
-											<Button size="sm" onClick={() => startEdit(p)}>Edit</Button>
-											<Button size="sm" variant="destructive" onClick={() => remove(p.id)}>Delete</Button>
+						{loading ? (
+							<div className="text-center py-8">Loading products...</div>
+						) : error ? (
+							<div className="text-center py-8 text-red-500">Error: {error}</div>
+						) : (
+							<div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+								{products.map((p) => (
+									<div key={p._id || p.id} className="border rounded-lg overflow-hidden">
+										<img src={p.image} alt={p.title} className="w-full aspect-square object-cover" />
+										<div className="p-3 space-y-1">
+											<p className="font-semibold line-clamp-1">{p.title}</p>
+											<p className="text-sm text-muted-foreground line-clamp-2">{p.description}</p>
+											<div className="flex items-center justify-between pt-2">
+												<Button size="sm" onClick={() => startEdit(p)}>Edit</Button>
+												<Button size="sm" variant="destructive" onClick={() => remove(p._id || p.id)}>Delete</Button>
+											</div>
 										</div>
 									</div>
-								</div>
-							))}
-						</div>
+								))}
+							</div>
+						)}
 					</CardContent>
 				</Card>
 			</div>

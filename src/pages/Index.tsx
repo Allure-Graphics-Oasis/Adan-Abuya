@@ -1,27 +1,46 @@
+import { useState, useEffect } from "react";
 import Hero from "@/components/Hero";
 import ProductCard from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { getProducts } from "@/store/products";
+import { apiClient } from "@/lib/api";
 import { ArrowRight, Smartphone, Building, Cog } from "lucide-react";
 import { Link } from "react-router-dom";
+import type { Product } from "@/components/ProductCard";
 
 const Index = () => {
-  const allProducts = getProducts();
-  const featuredProducts = allProducts.filter(product => product.featured);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const data = await apiClient.getProducts();
+        setProducts(data);
+      } catch (error) {
+        console.error('Failed to fetch products:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  const featuredProducts = products.filter(product => product.featured);
   
   const categories = [
     {
       name: "Coffee & Beverage",
       icon: Smartphone,
       description: "Professional coffee machines, grinders, and beverage equipment",
-      count: allProducts.filter(p => p.category === "Coffee & Beverage").length
+      count: products.filter(p => p.category === "Coffee & Beverage").length
     },
     {
       name: "Baking & Cooking", 
       icon: Building,
       description: "Commercial ovens, pizza ovens, and professional cooking equipment",
-      count: allProducts.filter(p => p.category === "Baking & Cooking").length
+      count: products.filter(p => p.category === "Baking & Cooking").length
     }
   ];
 
@@ -87,9 +106,15 @@ const Index = () => {
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
-            {featuredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
+            {loading ? (
+              <div className="col-span-full text-center py-8">
+                <div className="text-muted-foreground">Loading featured products...</div>
+              </div>
+            ) : (
+              featuredProducts.map((product) => (
+                <ProductCard key={product._id || product.id} product={product} />
+              ))
+            )}
           </div>
           
           <div className="text-center">
@@ -107,10 +132,10 @@ const Index = () => {
       <section className="py-16 bg-gradient-card">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Why Choose ExUK Equipment?
+            Why Choose ADAN'S Quality XUK Equipment?
           </h2>
           <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto">
-            We make buying ex-UK equipment simple, safe, and affordable
+            We make buying XUK equipment simple, safe, and affordable
           </p>
           
           <div className="grid md:grid-cols-4 gap-8">

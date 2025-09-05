@@ -1,12 +1,42 @@
-import { useMemo } from "react";
+import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { getProducts } from "@/store/products";
+import { apiClient } from "@/lib/api";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import type { Product } from "@/components/ProductCard";
 
 const ProductDetails = () => {
 	const params = useParams();
-	const product = useMemo(() => getProducts().find((p) => p.id === params.id), [params.id]);
+	const [product, setProduct] = useState<Product | null>(null);
+	const [loading, setLoading] = useState(true);
+
+	useEffect(() => {
+		const fetchProduct = async () => {
+			if (!params.id) return;
+			try {
+				const data = await apiClient.getProduct(params.id);
+				setProduct(data);
+			} catch (error) {
+				console.error('Failed to fetch product:', error);
+			} finally {
+				setLoading(false);
+			}
+		};
+
+		fetchProduct();
+	}, [params.id]);
+
+	if (loading) {
+		return (
+			<div className="max-w-3xl mx-auto py-12 px-4">
+				<Card className="border-border">
+					<CardContent className="p-6 space-y-4">
+						<p className="text-lg">Loading product...</p>
+					</CardContent>
+				</Card>
+			</div>
+		);
+	}
 
 	if (!product) {
 		return (

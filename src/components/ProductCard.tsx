@@ -5,10 +5,11 @@ import { MessageCircle, Phone, Eye } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export interface Product {
-  id: string;
+  id?: string;
+  _id?: string;
   title: string;
   description: string;
-  price?: string;
+  price: string;
   image: string;
   category: string;
   condition: "Excellent" | "Good" | "Fair";
@@ -83,7 +84,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           </Button>
         </div>
         <Button variant="outline" size="sm" className="w-full" asChild>
-          <Link to={`/product/${product.id}`}>
+          <Link to={`/product/${product._id || product.id}`}>
             <Eye className="h-4 w-4 mr-2" />
             View Details
           </Link>
