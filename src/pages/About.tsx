@@ -6,23 +6,23 @@ const About = () => {
   const features = [
     {
       icon: CheckCircle,
-      title: "Quality Guaranteed",
-      description: "Every item undergoes thorough inspection before listing"
+      title: "Genuine Parts",
+      description: "Only authentic Dawa spare parts and components"
     },
     {
       icon: Award,
-      title: "Best Prices",
-      description: "Competitive pricing on all second-hand equipment"
+      title: "Expert Service",
+      description: "Professional installation and maintenance support"
     },
     {
       icon: Users,
-      title: "Trusted Service", 
-      description: "Years of experience serving satisfied customers"
+      title: "Coffee Specialists", 
+      description: "Dedicated to coffee machine excellence"
     },
     {
       icon: Recycle,
-      title: "Eco-Friendly",
-      description: "Promoting sustainability through equipment reuse"
+      title: "Reliable Support",
+      description: "Keep your coffee business running smoothly"
     }
   ];
 
@@ -32,10 +32,10 @@ const About = () => {
       <div className="bg-gradient-primary text-primary-foreground py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            About Adan UK
+            About Dawa Coffee Machine & Spare Parts
           </h1>
           <p className="text-xl text-primary-foreground/90 max-w-2xl mx-auto">
-            Your trusted partner for quality second-hand equipment
+            Your trusted partner for coffee machines, spare parts, and professional support
           </p>
         </div>
       </div>
@@ -46,13 +46,13 @@ const About = () => {
           <div>
             <h2 className="text-3xl font-bold text-foreground mb-6">Our Mission</h2>
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              At AXUK, we believe in giving quality equipment a second life. Our mission is to provide 
-              businesses and individuals with affordable, high-quality second-hand equipment while promoting 
-              sustainability and reducing waste.
+              At Dawa Coffee Machine & Spare Parts, we are dedicated to providing coffee businesses with 
+              reliable, high-quality coffee machines and genuine spare parts. Our mission is to keep your 
+              coffee operations running smoothly with expert support and authentic components.
             </p>
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              With years of experience in the industry, we carefully select and inspect every item to ensure 
-              our customers receive excellent value for their investment.
+              With specialized expertise in coffee machine maintenance and repair, we ensure every part 
+              and machine meets the highest standards for performance and durability.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
@@ -107,7 +107,7 @@ const About = () => {
                 </div>
                 <h3 className="text-xl font-bold text-foreground mb-3">Quality First</h3>
                 <p className="text-muted-foreground">
-                  We thoroughly inspect every item to ensure it meets our high standards before offering it to our customers.
+                  We provide only genuine Dawa parts and thoroughly tested coffee machines to ensure optimal performance.
                 </p>
               </CardContent>
             </Card>
@@ -119,7 +119,7 @@ const About = () => {
                 </div>
                 <h3 className="text-xl font-bold text-foreground mb-3">Customer Focus</h3>
                 <p className="text-muted-foreground">
-                  Our customers are at the heart of everything we do. We strive to provide exceptional service and support.
+                  We understand coffee businesses and provide tailored solutions to keep your operations running efficiently.
                 </p>
               </CardContent>
             </Card>
@@ -129,9 +129,9 @@ const About = () => {
                 <div className="bg-accent/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Recycle className="h-8 w-8 text-accent" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-3">Sustainability</h3>
+                <h3 className="text-xl font-bold text-foreground mb-3">Expertise</h3>
                 <p className="text-muted-foreground">
-                  By promoting the reuse of equipment, we contribute to a more sustainable future for our planet.
+                  Our specialized knowledge in coffee machine maintenance ensures you get the right solution every time.
                 </p>
               </CardContent>
             </Card>
@@ -140,9 +140,9 @@ const About = () => {
 
         {/* CTA Section */}
         <div className="bg-gradient-primary rounded-lg p-8 md:p-12 text-center text-primary-foreground">
-          <h2 className="text-3xl font-bold mb-4">Ready to Find Your Next Equipment?</h2>
+          <h2 className="text-3xl font-bold mb-4">Ready to Upgrade Your Coffee Business?</h2>
           <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
-            Browse our extensive catalog or get in touch with us to discuss your specific needs.
+            Browse our coffee machines and spare parts or get in touch for expert advice on your coffee equipment needs.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="hero" size="lg" asChild>

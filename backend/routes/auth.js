@@ -111,4 +111,86 @@ router.get('/verify', auth, (req, res) => {
   res.json({ valid: true, user: req.user });
 });
 
+// Change password
+router.put('/change-password', auth, async (req, res) => {
+  try {
+    const { currentPassword, newPassword } = req.body;
+
+    // Validate input
+    if (!currentPassword || !newPassword) {
+      return res.status(400).json({ message: 'Current password and new password are required' });
+    }
+
+    if (newPassword.length < 6) {
+      return res.status(400).json({ message: 'New password must be at least 6 characters long' });
+    }
+
+    // Get user from database (including password)
+    const user = await User.findById(req.user._id).select('+password');
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Verify current password
+    const isCurrentPasswordValid = await user.comparePassword(currentPassword);
+    if (!isCurrentPasswordValid) {
+      return res.status(400).json({ message: 'Current password is incorrect' });
+    }
+
+    // Update password
+    user.password = newPassword;
+    await user.save();
+
+    res.json({ message: 'Password changed successfully' });
+  } catch (error) {
+    console.error('Change password error:', error);
+    res.status(500).json({ message: 'Server error during password change' });
+  }
+});
+
+// Change username
+router.put('/change-username', auth, async (req, res) => {
+  try {
+    const { newName, currentPassword } = req.body;
+
+    // Validate input
+    if (!newName || !currentPassword) {
+      return res.status(400).json({ message: 'New username and current password are required' });
+    }
+
+    if (newName.trim().length < 2) {
+      return res.status(400).json({ message: 'Username must be at least 2 characters long' });
+    }
+
+    // Get user from database (including password)
+    const user = await User.findById(req.user._id).select('+password');
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Verify current password
+    const isCurrentPasswordValid = await user.comparePassword(currentPassword);
+    if (!isCurrentPasswordValid) {
+      return res.status(400).json({ message: 'Current password is incorrect' });
+    }
+
+    // Update username
+    user.name = newName.trim();
+    await user.save();
+
+    res.json({ 
+      message: 'Username changed successfully',
+      user: {
+        id: user._id,
+        email: user.email,
+        name: user.name,
+        role: user.role
+      }
+    });
+  } catch (error) {
+    console.error('Change username error:', error);
+    res.status(500).json({ message: 'Server error during username change' });
+  }
+});
+
 module.exports = router;

@@ -3,12 +3,14 @@ import { useParams, Link } from "react-router-dom";
 import { apiClient } from "@/lib/api";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { Product } from "@/components/ProductCard";
 
 const ProductDetails = () => {
 	const params = useParams();
 	const [product, setProduct] = useState<Product | null>(null);
 	const [loading, setLoading] = useState(true);
+	const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
 	useEffect(() => {
 		const fetchProduct = async () => {
@@ -25,6 +27,26 @@ const ProductDetails = () => {
 
 		fetchProduct();
 	}, [params.id]);
+
+	// Get all images (primary + additional)
+	const getAllImages = () => {
+		if (!product) return [];
+		const images = [product.image];
+		if (product.images && product.images.length > 0) {
+			images.push(...product.images);
+		}
+		return images;
+	};
+
+	const images = getAllImages();
+
+	const nextImage = () => {
+		setSelectedImageIndex((prev) => (prev + 1) % images.length);
+	};
+
+	const prevImage = () => {
+		setSelectedImageIndex((prev) => (prev - 1 + images.length) % images.length);
+	};
 
 	if (loading) {
 		return (
@@ -55,8 +77,67 @@ const ProductDetails = () => {
 
 	return (
 		<div className="max-w-5xl mx-auto py-10 px-4 grid grid-cols-1 lg:grid-cols-2 gap-8">
-			<div className="w-full">
-				<img src={product.image} alt={product.title} className="w-full aspect-square object-cover rounded-lg border border-border" />
+			<div className="w-full space-y-4">
+				{/* Main Image Display */}
+				<div className="relative group">
+					<img 
+						src={images[selectedImageIndex]} 
+						alt={product.title} 
+						className="w-full aspect-square object-cover rounded-lg border border-border" 
+					/>
+					
+					{/* Navigation Arrows */}
+					{images.length > 1 && (
+						<>
+							<Button
+								variant="outline"
+								size="icon"
+								className="absolute left-2 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 hover:bg-white"
+								onClick={prevImage}
+							>
+								<ChevronLeft className="h-4 w-4" />
+							</Button>
+							<Button
+								variant="outline"
+								size="icon"
+								className="absolute right-2 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 hover:bg-white"
+								onClick={nextImage}
+							>
+								<ChevronRight className="h-4 w-4" />
+							</Button>
+						</>
+					)}
+					
+					{/* Image Counter */}
+					{images.length > 1 && (
+						<div className="absolute bottom-2 right-2 bg-black/70 text-white px-2 py-1 rounded text-sm">
+							{selectedImageIndex + 1} / {images.length}
+						</div>
+					)}
+				</div>
+				
+				{/* Thumbnail Gallery */}
+				{images.length > 1 && (
+					<div className="flex gap-2 overflow-x-auto pb-2">
+						{images.map((img, index) => (
+							<button
+								key={index}
+								onClick={() => setSelectedImageIndex(index)}
+								className={`flex-shrink-0 w-16 h-16 rounded border-2 overflow-hidden transition-all ${
+									index === selectedImageIndex 
+										? 'border-primary ring-2 ring-primary/20' 
+										: 'border-border hover:border-primary/50'
+								}`}
+							>
+								<img 
+									src={img} 
+									alt={`${product.title} view ${index + 1}`}
+									className="w-full h-full object-cover"
+								/>
+							</button>
+						))}
+					</div>
+				)}
 			</div>
 			<div className="space-y-4">
 				<p className="text-sm text-muted-foreground">{product.category} • {product.condition}</p>

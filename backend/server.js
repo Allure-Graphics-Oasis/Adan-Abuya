@@ -31,8 +31,8 @@ const limiter = rateLimit({
 app.use(limiter);
 //GATEWAY HANDLER
 app.use((req, res, next) => {
-  console.log('Received request to:', req.url);
-  console.log('Request method:', req.method);
+  console.log(`Received request method: ${req.method} of URL: ${req.url}`);
+  
   next();
 })
 

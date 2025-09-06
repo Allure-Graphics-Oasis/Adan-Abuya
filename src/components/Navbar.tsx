@@ -23,9 +23,9 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link to="/admin" className="flex-shrink-0 flex items-center">
               <div className="bg-gradient-primary p-2 rounded-lg">
-                <span className="text-primary-foreground font-bold text-xl">AXUK</span>
+                <span className="text-primary-foreground font-bold text-xl">DAWA</span>
               </div>
-              <span className="ml-2 text-xl font-bold text-primary">Adan-Abuya</span>
+              <span className="ml-2 text-xl font-bold text-primary">Coffee Machine & Spare Parts</span>
             </Link>
           </div>
 

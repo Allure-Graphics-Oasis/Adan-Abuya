@@ -17,18 +17,22 @@ const productSchema = new mongoose.Schema({
     trim: true
   },
   image: {
-    type: String, // GridFS file ID or URL
+    type: String, // GridFS file ID or URL (primary image)
     required: true
+  },
+  images: {
+    type: [String], // Array of GridFS file IDs or URLs (additional images)
+    default: []
   },
   category: {
     type: String,
     required: true,
-    enum: ['Coffee & Beverage', 'Baking & Cooking']
+    enum: ['Coffee Machines', 'Spare Parts', 'Accessories']
   },
   condition: {
     type: String,
     required: true,
-    enum: ['Excellent', 'Good', 'Fair']
+    enum: ['Excellent', 'Good', 'Fair', 'New']
   },
   stock: {
     type: Number,

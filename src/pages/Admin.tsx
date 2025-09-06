@@ -1,9 +1,10 @@
 import { useMemo, useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { apiClient } from "@/lib/api";
 import type { Product } from "@/components/ProductCard";
 
@@ -61,6 +62,7 @@ const emptyDraft: Omit<Product, "id" | "_id"> = {
 	description: "",
 	price: "",
 	image: "",
+	images: [],
 	category: "Coffee & Beverage",
 	condition: "Good",
 	stock: 0
@@ -76,7 +78,21 @@ const Admin = () => {
 	const [imgQuery, setImgQuery] = useState("");
 	const [isSearching, setIsSearching] = useState(false);
 	const [localFile, setLocalFile] = useState<File | null>(null);
+	const [localFiles, setLocalFiles] = useState<File[]>([]);
 	const [user, setUser] = useState<any>(null);
+	
+	// Password change state
+	const [showPasswordDialog, setShowPasswordDialog] = useState(false);
+	const [currentPassword, setCurrentPassword] = useState("");
+	const [newPassword, setNewPassword] = useState("");
+	const [confirmPassword, setConfirmPassword] = useState("");
+	const [isChangingPassword, setIsChangingPassword] = useState(false);
+	
+	// Username change state
+	const [showUsernameDialog, setShowUsernameDialog] = useState(false);
+	const [newUsername, setNewUsername] = useState("");
+	const [usernameCurrentPassword, setUsernameCurrentPassword] = useState("");
+	const [isChangingUsername, setIsChangingUsername] = useState(false);
 
 	useEffect(() => {
 		const checkAuth = async () => {
@@ -110,6 +126,7 @@ const Admin = () => {
 			description: p.description,
 			price: p.price || "",
 			image: p.image,
+			images: p.images || [],
 			category: p.category,
 			condition: p.condition,
 			stock: p.stock ?? 0
@@ -192,6 +209,96 @@ const Admin = () => {
 		}
 	};
 
+	const onMultipleFilesChange = async (files: FileList | null) => {
+		if (!files || files.length === 0) return;
+		
+		const fileArray = Array.from(files);
+		setLocalFiles(fileArray);
+		
+		try {
+			console.log('Uploading multiple files:', fileArray.map(f => f.name));
+			const responses = await apiClient.uploadMultipleImages(fileArray);
+			console.log('Upload responses:', responses);
+			const imageUrls = responses.map(response => apiClient.getImageUrl(response.imageId));
+			console.log('Generated image URLs:', imageUrls);
+			
+			// Set first image as primary image if no primary image is set
+			const updatedDraft = { 
+				...draft, 
+				images: [...(draft.images || []), ...imageUrls],
+				image: draft.image || imageUrls[0] // Set first image as primary if no primary exists
+			};
+			setDraft(updatedDraft);
+			
+			if (editing) {
+				await apiClient.updateProduct(editing._id || editing.id, updatedDraft);
+				refresh();
+			}
+		} catch (err) {
+			console.error('Upload error:', err);
+			alert(err instanceof Error ? err.message : "Failed to upload images");
+		}
+	};
+
+	const handlePasswordChange = async () => {
+		// Validate inputs
+		if (!currentPassword || !newPassword || !confirmPassword) {
+			alert("All fields are required");
+			return;
+		}
+
+		if (newPassword.length < 6) {
+			alert("New password must be at least 6 characters long");
+			return;
+		}
+
+		if (newPassword !== confirmPassword) {
+			alert("New passwords do not match");
+			return;
+		}
+
+		setIsChangingPassword(true);
+		try {
+			await apiClient.changePassword(currentPassword, newPassword);
+			alert("Password changed successfully!");
+			setShowPasswordDialog(false);
+			setCurrentPassword("");
+			setNewPassword("");
+			setConfirmPassword("");
+		} catch (err) {
+			alert(err instanceof Error ? err.message : "Failed to change password");
+		} finally {
+			setIsChangingPassword(false);
+		}
+	};
+
+	const handleUsernameChange = async () => {
+		// Validate inputs
+		if (!newUsername || !usernameCurrentPassword) {
+			alert("All fields are required");
+			return;
+		}
+
+		if (newUsername.trim().length < 2) {
+			alert("Username must be at least 2 characters long");
+			return;
+		}
+
+		setIsChangingUsername(true);
+		try {
+			const response = await apiClient.changeUsername(newUsername.trim(), usernameCurrentPassword);
+			alert("Username changed successfully!");
+			setUser(response.user); // Update user state with new username
+			setShowUsernameDialog(false);
+			setNewUsername("");
+			setUsernameCurrentPassword("");
+		} catch (err) {
+			alert(err instanceof Error ? err.message : "Failed to change username");
+		} finally {
+			setIsChangingUsername(false);
+		}
+	};
+
 	if (!isAuthed) {
 		return (
 			<div className="max-w-md mx-auto py-16 px-4">
@@ -226,6 +333,81 @@ const Admin = () => {
 					<p className="text-muted-foreground">Welcome, {user?.name} ({user?.role})</p>
 				</div>
 				<div className="space-x-2">
+					<Dialog open={showUsernameDialog} onOpenChange={setShowUsernameDialog}>
+						<DialogTrigger asChild>
+							<Button variant="outline">Change Username</Button>
+						</DialogTrigger>
+						<DialogContent className="sm:max-w-md">
+							<DialogHeader>
+								<DialogTitle>Change Username</DialogTitle>
+							</DialogHeader>
+							<div className="space-y-4">
+								<Input
+									placeholder="New username"
+									value={newUsername}
+									onChange={(e) => setNewUsername(e.target.value)}
+								/>
+								<Input
+									type="password"
+									placeholder="Current password"
+									value={usernameCurrentPassword}
+									onChange={(e) => setUsernameCurrentPassword(e.target.value)}
+								/>
+								<div className="flex justify-end space-x-2">
+									<Button variant="outline" onClick={() => setShowUsernameDialog(false)}>
+										Cancel
+									</Button>
+									<Button 
+										onClick={handleUsernameChange} 
+										disabled={isChangingUsername}
+									>
+										{isChangingUsername ? "Changing..." : "Change Username"}
+									</Button>
+								</div>
+							</div>
+						</DialogContent>
+					</Dialog>
+					<Dialog open={showPasswordDialog} onOpenChange={setShowPasswordDialog}>
+						<DialogTrigger asChild>
+							<Button variant="outline">Change Password</Button>
+						</DialogTrigger>
+						<DialogContent className="sm:max-w-md">
+							<DialogHeader>
+								<DialogTitle>Change Password</DialogTitle>
+							</DialogHeader>
+							<div className="space-y-4">
+								<Input
+									type="password"
+									placeholder="Current password"
+									value={currentPassword}
+									onChange={(e) => setCurrentPassword(e.target.value)}
+								/>
+								<Input
+									type="password"
+									placeholder="New password"
+									value={newPassword}
+									onChange={(e) => setNewPassword(e.target.value)}
+								/>
+								<Input
+									type="password"
+									placeholder="Confirm new password"
+									value={confirmPassword}
+									onChange={(e) => setConfirmPassword(e.target.value)}
+								/>
+								<div className="flex justify-end space-x-2">
+									<Button variant="outline" onClick={() => setShowPasswordDialog(false)}>
+										Cancel
+									</Button>
+									<Button 
+										onClick={handlePasswordChange} 
+										disabled={isChangingPassword}
+									>
+										{isChangingPassword ? "Changing..." : "Change Password"}
+									</Button>
+								</div>
+							</div>
+						</DialogContent>
+					</Dialog>
 					<Button variant="secondary" onClick={() => { apiClient.logout(); setIsAuthed(false); setUser(null); }}>Logout</Button>
 				</div>
 			</div>
@@ -240,12 +422,51 @@ const Admin = () => {
 						<Input type="number" placeholder="Amount in stock" value={draft.stock ?? 0}
 							onChange={(e) => setDraft({ ...draft, stock: Number.isNaN(parseInt(e.target.value)) ? 0 : parseInt(e.target.value) })} />
 						<Input placeholder="Image URL" value={draft.image} onChange={(e) => setDraft({ ...draft, image: e.target.value })} />
-						<label className="text-sm text-muted-foreground">Upload image from device</label>
+						<label className="text-sm text-muted-foreground">Upload primary image from device</label>
 						<input
 							type="file"
 							accept="image/*"
 							onChange={(e) => onLocalFileChange(e.target.files?.[0] || null)}
 						/>
+						
+						<div className="space-y-2">
+							<label className="text-sm text-muted-foreground">Upload multiple additional images</label>
+							<input
+								type="file"
+								accept="image/*"
+								multiple
+								onChange={(e) => onMultipleFilesChange(e.target.files)}
+								className="w-full"
+							/>
+							<p className="text-xs text-muted-foreground">Hold Ctrl/Cmd to select multiple images</p>
+						</div>
+						
+						{draft.images && draft.images.length > 0 && (
+							<div className="space-y-2">
+								<label className="text-sm text-muted-foreground">Additional Images ({draft.images.length})</label>
+								<div className="grid grid-cols-2 gap-2 max-h-32 overflow-y-auto">
+									{draft.images.map((img, index) => (
+										<div key={index} className="relative">
+											<img 
+												src={img} 
+												alt={`Additional image ${index + 1}`}
+												className="w-full h-16 object-cover rounded border"
+											/>
+											<button
+												type="button"
+												onClick={() => {
+													const newImages = draft.images?.filter((_, i) => i !== index) || [];
+													setDraft({ ...draft, images: newImages });
+												}}
+												className="absolute -top-1 -right-1 bg-red-500 text-white rounded-full w-5 h-5 text-xs hover:bg-red-600"
+											>
+												×
+											</button>
+										</div>
+									))}
+								</div>
+							</div>
+						)}
 						<Select value={draft.category} onValueChange={(v) => setDraft({ ...draft, category: v })}>
 							<SelectTrigger><SelectValue placeholder="Category" /></SelectTrigger>
 							<SelectContent>

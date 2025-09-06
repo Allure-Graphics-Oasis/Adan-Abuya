@@ -76,6 +76,23 @@ class ApiClient {
     this.clearToken();
   }
 
+  async changePassword(currentPassword: string, newPassword: string) {
+    return this.request<{ message: string }>('/auth/change-password', {
+      method: 'PUT',
+      body: JSON.stringify({ currentPassword, newPassword }),
+    });
+  }
+
+  async changeUsername(newName: string, currentPassword: string) {
+    return this.request<{ 
+      message: string; 
+      user: { id: string; email: string; name: string; role: string } 
+    }>('/auth/change-username', {
+      method: 'PUT',
+      body: JSON.stringify({ newName, currentPassword }),
+    });
+  }
+
   // Product endpoints
   async getProducts(params?: { category?: string; condition?: string; featured?: boolean }) {
     const searchParams = new URLSearchParams();
@@ -96,6 +113,7 @@ class ApiClient {
     description: string;
     price: string;
     image: string;
+    images?: string[];
     category: string;
     condition: string;
     stock?: number;
@@ -112,6 +130,7 @@ class ApiClient {
     description: string;
     price: string;
     image: string;
+    images: string[];
     category: string;
     condition: string;
     stock: number;
@@ -148,6 +167,11 @@ class ApiClient {
     }
 
     return response.json();
+  }
+
+  async uploadMultipleImages(files: File[]) {
+    const uploadPromises = files.map(file => this.uploadImage(file));
+    return Promise.all(uploadPromises);
   }
 
   getImageUrl(imageId: string) {

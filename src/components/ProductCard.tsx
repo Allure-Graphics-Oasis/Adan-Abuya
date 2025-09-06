@@ -11,8 +11,9 @@ export interface Product {
   description: string;
   price: string;
   image: string;
+  images?: string[];
   category: string;
-  condition: "Excellent" | "Good" | "Fair";
+  condition: "Excellent" | "Good" | "Fair" | "New";
   featured?: boolean;
   stock?: number;
 }
@@ -25,7 +26,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const conditionColor = {
     Excellent: "success",
     Good: "accent",
-    Fair: "warning"
+    Fair: "warning",
+    New: "default"
   } as const;
 
   return (

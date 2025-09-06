@@ -51,13 +51,14 @@ router.get('/:id', async (req, res) => {
 // Create product (admin/merchant only)
 router.post('/', auth, requireRole(['admin', 'merchant']), async (req, res) => {
   try {
-    const { title, description, price, image, category, condition, stock, featured } = req.body;
+    const { title, description, price, image, images, category, condition, stock, featured } = req.body;
 
     const product = new Product({
       title,
       description,
       price,
       image,
+      images: images || [],
       category,
       condition,
       stock: stock || 0,
@@ -81,7 +82,7 @@ router.post('/', auth, requireRole(['admin', 'merchant']), async (req, res) => {
 // Update product (admin/merchant only)
 router.put('/:id', auth, requireRole(['admin', 'merchant']), async (req, res) => {
   try {
-    const { title, description, price, image, category, condition, stock, featured } = req.body;
+    const { title, description, price, image, images, category, condition, stock, featured } = req.body;
 
     const product = await Product.findById(req.params.id);
     if (!product) {
@@ -93,6 +94,7 @@ router.put('/:id', auth, requireRole(['admin', 'merchant']), async (req, res) =>
     product.description = description || product.description;
     product.price = price || product.price;
     product.image = image || product.image;
+    product.images = images !== undefined ? images : product.images;
     product.category = category || product.category;
     product.condition = condition || product.condition;
     product.stock = stock !== undefined ? stock : product.stock;
