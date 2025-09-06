@@ -1,4 +1,4 @@
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://dawa-coffee-machienes.onrender.com/api';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://api.dawacoffeemachienesandaccessories.com/api';
 
 class ApiClient {
   private baseURL: string;
