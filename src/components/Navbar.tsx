@@ -25,7 +25,7 @@ const Navbar = () => {
               <div className="bg-gradient-primary p-2 rounded-lg">
                 <span className="text-primary-foreground font-bold text-xl">DAWA</span>
               </div>
-              <span className="ml-2 text-xl font-bold text-primary">Coffee Machine & Spare Parts</span>
+              <span className="ml-2 text-xl font-bold text-primary">CA</span>
             </Link>
           </div>
 
