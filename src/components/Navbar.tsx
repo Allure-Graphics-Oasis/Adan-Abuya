@@ -46,14 +46,14 @@ const Navbar = () => {
             ))}
             <div className="flex items-center space-x-2">
               <Button variant="ghost" size="sm" asChild>
-                <a href="tel:+254700000000" className="flex items-center">
+                <a href="tel:+254114100019" className="flex items-center">
                   <Phone className="h-4 w-4 mr-1" />
                   Call
                 </a>
               </Button>
               <Button variant="secondary" size="sm" asChild>
                 <a 
-                  href="https://wa.me/254700000000" 
+                  href="https://wa.me/+254114100019" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center"
@@ -99,14 +99,14 @@ const Navbar = () => {
             ))}
             <div className="flex flex-col space-y-2 px-3 pt-2">
               <Button variant="ghost" size="sm" asChild>
-                <a href="tel:+254700000000" className="flex items-center justify-center">
+                <a href="tel:+254114100019" className="flex items-center justify-center">
                   <Phone className="h-4 w-4 mr-2" />
                   Call Us
                 </a>
               </Button>
               <Button variant="secondary" size="sm" asChild>
                 <a 
-                  href="https://wa.me/254700000000" 
+                  href="https://wa.me/+254114100019" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center justify-center"

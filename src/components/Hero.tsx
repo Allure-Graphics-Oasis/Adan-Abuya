@@ -38,12 +38,12 @@ const Hero = () => {
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground mb-6 leading-tight">
             Dawa Coffee Machine
-            <span className="block text-secondary"> & Spare Parts</span>
+            <span className="block text-secondary"> & Business Equipment</span>
           </h1>
           
           <p className="text-xl md:text-2xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Your trusted partner for premium coffee machines, spare parts, and professional coffee equipment. 
-            Quality guaranteed, competitive prices, and expert support for all your coffee business needs.
+            Giving quality business equipment a second life. From coffee machines to fridges, meat slicers, and more. 
+            Plus genuine spare parts and accessories. Quality tested, competitive prices, and expert support.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
@@ -56,7 +56,7 @@ const Hero = () => {
             
             <div className="flex gap-3">
               <Button variant="outline" size="lg" asChild>
-                <a href="tel:+254720983015" className="bg-primary-foreground/10 backdrop-blur border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground hover:text-primary">
+                <a href="tel:+254114100019" className="bg-primary-foreground/10 backdrop-blur border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground hover:text-primary">
                   <Phone className="mr-2 h-5 w-5" />
                   Call Now
                 </a>
@@ -64,7 +64,7 @@ const Hero = () => {
               
               <Button variant="secondary" size="lg" asChild>
                 <a 
-                  href="https://wa.me/+447914344843?text=Hi, I'd like to know more about your equipment"
+                  href="https://wa.me/+254114100019?text=Hi, I'd like to know more about your equipment"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

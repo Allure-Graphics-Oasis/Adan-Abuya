@@ -39,14 +39,20 @@ const Index = () => {
     {
       name: "Spare Parts", 
       icon: Cog,
-      description: "Genuine spare parts and components for Dawa coffee machines",
+      description: "Genuine spare parts for all types of business equipment",
       count: products.filter(p => p.category === "Spare Parts").length
     },
     {
-      name: "Accessories",
+      name: "Refrigeration",
       icon: Building,
-      description: "Cleaning supplies, filters, and maintenance accessories",
-      count: products.filter(p => p.category === "Accessories").length
+      description: "Commercial refrigerators, freezers, and cooling equipment",
+      count: products.filter(p => p.category === "Refrigeration").length
+    },
+    {
+      name: "Food Processing",
+      icon: Cog,
+      description: "Meat slicers, mixers, and food preparation equipment",
+      count: products.filter(p => p.category === "Food Processing").length
     }
   ];
 
@@ -138,28 +144,28 @@ const Index = () => {
       <section className="py-16 bg-gradient-card">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Why Choose Dawa Coffee Machine & Spare Parts?
+            Why Choose Dawa Coffee Machine & Business Equipment?
           </h2>
           <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto">
-            Your trusted partner for all coffee machine needs - from equipment to spare parts and expert support
+            Your trusted partner for quality second-hand business equipment - giving equipment a second life while saving you money
           </p>
           
           <div className="grid md:grid-cols-4 gap-8">
             <div className="text-center">
               <div className="text-3xl font-bold text-primary mb-2">Quality</div>
-              <p className="text-muted-foreground">Genuine Dawa parts & equipment</p>
+              <p className="text-muted-foreground">Every item tested & verified</p>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-secondary mb-2">Expertise</div>
-              <p className="text-muted-foreground">Coffee machine specialists</p>
+              <div className="text-3xl font-bold text-secondary mb-2">Savings</div>
+              <p className="text-muted-foreground">Up to 70% off retail prices</p>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-accent mb-2">Support</div>
-              <p className="text-muted-foreground">Installation & maintenance</p>
+              <div className="text-3xl font-bold text-accent mb-2">Sustainability</div>
+              <p className="text-muted-foreground">Giving equipment a second life</p>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-primary mb-2">Reliability</div>
-              <p className="text-muted-foreground">Trusted by coffee businesses</p>
+              <div className="text-3xl font-bold text-primary mb-2">Trust</div>
+              <p className="text-muted-foreground">Trusted by businesses</p>
             </div>
           </div>
         </div>

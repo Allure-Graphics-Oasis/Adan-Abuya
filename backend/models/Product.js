@@ -27,7 +27,7 @@ const productSchema = new mongoose.Schema({
   category: {
     type: String,
     required: true,
-    enum: ['Coffee Machines', 'Spare Parts', 'Accessories', 'Coffee & Beverage', 'Baking & Cooking']
+    enum: ['Coffee Machines', 'Spare Parts', 'Accessories', 'Refrigeration', 'Food Processing', 'Baking & Cooking', 'General Equipment', 'Coffee & Beverage', 'Baking & Cooking']
   },
   condition: {
     type: String,

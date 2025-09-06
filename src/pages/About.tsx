@@ -6,23 +6,23 @@ const About = () => {
   const features = [
     {
       icon: CheckCircle,
-      title: "Genuine Parts",
-      description: "Only authentic Dawa spare parts and components"
+      title: "Quality Tested",
+      description: "Every piece of equipment is thoroughly tested and verified"
     },
     {
       icon: Award,
-      title: "Expert Service",
-      description: "Professional installation and maintenance support"
+      title: "Great Value",
+      description: "Significant savings compared to new equipment prices"
     },
     {
       icon: Users,
-      title: "Coffee Specialists", 
-      description: "Dedicated to coffee machine excellence"
+      title: "Business Focus", 
+      description: "Specializing in commercial and business equipment"
     },
     {
       icon: Recycle,
-      title: "Reliable Support",
-      description: "Keep your coffee business running smoothly"
+      title: "Sustainability",
+      description: "Giving quality equipment a second life"
     }
   ];
 
@@ -32,10 +32,10 @@ const About = () => {
       <div className="bg-gradient-primary text-primary-foreground py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            About Dawa Coffee Machine & Spare Parts
+            About Dawa Coffee Machine & Business Equipment
           </h1>
           <p className="text-xl text-primary-foreground/90 max-w-2xl mx-auto">
-            Your trusted partner for coffee machines, spare parts, and professional support
+            Your trusted partner for quality second-hand business equipment and professional support
           </p>
         </div>
       </div>
@@ -46,13 +46,13 @@ const About = () => {
           <div>
             <h2 className="text-3xl font-bold text-foreground mb-6">Our Mission</h2>
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              At Dawa Coffee Machine & Spare Parts, we are dedicated to providing coffee businesses with 
-              reliable, high-quality coffee machines and genuine spare parts. Our mission is to keep your 
-              coffee operations running smoothly with expert support and authentic components.
+              At Dawa Coffee Machine & Business Equipment, we believe in giving quality business equipment 
+              a second life. Our mission is to provide restaurants, cafes, and businesses with reliable, 
+              high-quality second-hand equipment at affordable prices while promoting sustainability.
             </p>
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              With specialized expertise in coffee machine maintenance and repair, we ensure every part 
-              and machine meets the highest standards for performance and durability.
+              From coffee machines to fridges, meat slicers, and more - we carefully test and verify every 
+              piece of equipment to ensure it meets our high standards for performance and reliability.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
