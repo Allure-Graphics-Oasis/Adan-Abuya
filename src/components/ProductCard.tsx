@@ -71,13 +71,13 @@ const ProductCard = ({ product }: ProductCardProps) => {
       <CardFooter className="p-4 pt-0 flex flex-col space-y-2">
         <div className="flex w-full space-x-2">
           <Button variant="ghost" size="sm" className="flex-1" asChild>
-            <a href="tel:+254700000000">
+            <a href="tel:+254114100019">
               <Phone className="h-4 w-4" />
             </a>
           </Button>
           <Button variant="secondary" size="sm" className="flex-1" asChild>
             <a 
-              href={`https://wa.me/254700000000?text=Hi, I'm interested in: ${product.title}`}
+              href={`https://wa.me/+447914344843?text=Hi, I'm interested in: ${product.title}`}
               target="_blank"
               rel="noopener noreferrer"
             >

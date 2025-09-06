@@ -38,7 +38,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground">Phone</h3>
-                  <p className="text-muted-foreground">+254 700 000 000 | +254 700 000 001</p>
+                  <p className="text-muted-foreground">Contact Sales: +254 114 100 019 | Contact Support(Harreit): +254 720 983 015</p>
                   <p className="text-sm text-muted-foreground">Call us for coffee machine support</p>
                 </div>
               </div>
@@ -49,10 +49,10 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground">WhatsApp</h3>
-                  <p className="text-muted-foreground">+254 700 000 000</p>
+                  <p className="text-muted-foreground">+447914344843</p>
                   <Button variant="secondary" size="sm" className="mt-2" asChild>
                     <a 
-                      href="https://wa.me/254700000000?text=Hi, I need help with coffee machine parts or service"
+                      href="https://wa.me/+447914344843?text=Hi, I need help with coffee machine parts or service"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -69,7 +69,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground">Email</h3>
-                  <p className="text-muted-foreground">info@dawacoffee.com</p>
+                  <p className="text-muted-foreground">Adhappi94@gmail.com</p>
                   <p className="text-sm text-muted-foreground">We'll respond within 24 hours</p>
                 </div>
               </div>
@@ -80,7 +80,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground">Location</h3>
-                  <p className="text-muted-foreground">Coffee Machine Service Center, Nairobi, Kenya</p>
+                  <p className="text-muted-foreground">1st Avenue EastLeigh, Melawi road Bustan tower</p>
                   <p className="text-sm text-muted-foreground">Visit our service center by appointment</p>
                 </div>
               </div>
@@ -106,14 +106,14 @@ const Contact = () => {
               <CardContent>
                 <div className="flex flex-col sm:flex-row gap-3">
                   <Button variant="default" className="flex-1" asChild>
-                    <a href="tel:+254700000000">
+                    <a href="tel:+254114100019">
                       <Phone className="h-4 w-4 mr-2" />
                       Call Now
                     </a>
                   </Button>
                   <Button variant="secondary" className="flex-1" asChild>
                     <a 
-                      href="https://wa.me/254700000000?text=Hi, I need help finding equipment"
+                      href="https://wa.me/+447914344843?text=Hi, I need help finding equipment"
                       target="_blank"
                       rel="noopener noreferrer"
                     >

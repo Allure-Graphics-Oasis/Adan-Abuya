@@ -56,7 +56,7 @@ const Hero = () => {
             
             <div className="flex gap-3">
               <Button variant="outline" size="lg" asChild>
-                <a href="tel:+254700000000" className="bg-primary-foreground/10 backdrop-blur border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground hover:text-primary">
+                <a href="tel:+254720983015" className="bg-primary-foreground/10 backdrop-blur border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground hover:text-primary">
                   <Phone className="mr-2 h-5 w-5" />
                   Call Now
                 </a>
@@ -64,7 +64,7 @@ const Hero = () => {
               
               <Button variant="secondary" size="lg" asChild>
                 <a 
-                  href="https://wa.me/254700000000?text=Hi, I'd like to know more about your equipment"
+                  href="https://wa.me/+447914344843?text=Hi, I'd like to know more about your equipment"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
