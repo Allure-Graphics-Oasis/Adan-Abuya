@@ -17,8 +17,8 @@ app.use(helmet({
   crossOriginResourcePolicy: { policy: "cross-origin" }
 }));
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' 
-    ? ['https://adan-abuya.vercel.app'] 
+  origin: process.env.NODE_ENV === 'production'
+    ? ['https://adan-abuya.vercel.app']
     : ['http://localhost:3000', 'http://localhost:5173', 'http://localhost:8081'],
   credentials: true
 }));
