@@ -37,12 +37,12 @@ const Hero = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground mb-6 leading-tight">
-            Quality XUK
+            Quality X-Italy
             <span className="block text-secondary"> Equipment & More</span>
           </h1>
           
           <p className="text-xl md:text-2xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Premium reusable equipment exported from the UK. Specializing in coffee, beverage, and commercial baking equipment.
+            Premium reusable equipment exported from Italy. Specializing in coffee, beverage, and commercial & Household baking equipment.
             Quality guaranteed, prices that make sense.
           </p>
           

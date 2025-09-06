@@ -32,7 +32,7 @@ const About = () => {
       <div className="bg-gradient-primary text-primary-foreground py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            About SecondEquip
+            About Adan UK
           </h1>
           <p className="text-xl text-primary-foreground/90 max-w-2xl mx-auto">
             Your trusted partner for quality second-hand equipment
@@ -164,6 +164,19 @@ const About = () => {
           </div>
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className="bg-neutral border-t border-border mt-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="text-center">
+            <p className="text-muted-foreground text-sm">
+              © 2024 Allure Graphics Oasis Distributions | 
+              Email: <a href="mailto:alluregraphicsoasis.co@gmail.com" className="text-primary hover:underline">alluregraphicsoasis.co@gmail.com</a> | 
+              Support: <a href="tel:+254740275539" className="text-primary hover:underline">+254740275539</a>
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };

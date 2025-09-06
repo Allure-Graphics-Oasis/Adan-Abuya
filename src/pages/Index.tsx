@@ -132,10 +132,10 @@ const Index = () => {
       <section className="py-16 bg-gradient-card">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Why Choose ADAN'S Quality XUK Equipment?
+            Why Choose ADAN'S Quality X-Italy Equipment?
           </h2>
           <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto">
-            We make buying XUK equipment simple, safe, and affordable
+            We make buying reusable X-Italy equipment simple, safe, and affordable
           </p>
           
           <div className="grid md:grid-cols-4 gap-8">

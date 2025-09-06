@@ -80,7 +80,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground">Location</h3>
-                  <p className="text-muted-foreground">Nairobi, Kenya</p>
+                  <p className="text-muted-foreground">1st Avenue Eastleigh, Melawi road bustan tower, Nairobi, Kenya</p>
                   <p className="text-sm text-muted-foreground">Visit our showroom by appointment</p>
                 </div>
               </div>
@@ -91,8 +91,8 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground">Business Hours</h3>
-                  <p className="text-muted-foreground">Monday - Friday: 8:00 AM - 6:00 PM</p>
-                  <p className="text-muted-foreground">Saturday: 9:00 AM - 4:00 PM</p>
+                  <p className="text-muted-foreground">Monday - Friday: 10:00 AM - 5:00 PM</p>
+                  <p className="text-muted-foreground">Saturday: 9:00 AM - 12:00 PM</p>
                   <p className="text-muted-foreground">Sunday: Closed</p>
                 </div>
               </div>

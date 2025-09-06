@@ -53,7 +53,7 @@ const Products = () => {
             Our Product Catalog
           </h1>
           <p className="text-xl text-primary-foreground/90 max-w-2xl mx-auto">
-            Browse our extensive collection of quality second-hand equipment
+            Browse our extensive collection of Quality reusable equipment
           </p>
         </div>
       </div>
