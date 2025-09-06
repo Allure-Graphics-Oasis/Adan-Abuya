@@ -18,7 +18,7 @@ app.use(helmet({
 }));
 app.use(cors({
   origin: process.env.NODE_ENV === 'production'
-    ? ['https://adan-abuya.vercel.app']
+    ? ['https://adan-abuya.vercel.app', 'https://www.dawacoffeemachienesandaccessories.com']
     : ['http://localhost:3000', 'http://localhost:5173', 'http://localhost:8081'],
   credentials: true
 }));
