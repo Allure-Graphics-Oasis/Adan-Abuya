@@ -43,7 +43,7 @@ const Hero = () => {
           
           <p className="text-xl md:text-2xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto leading-relaxed">
             Giving quality business equipment a second life. From coffee machines to fridges, meat slicers, and more. 
-            Plus genuine spare parts and accessories. Quality tested, competitive prices, and expert support.
+            Plus genuine spare parts and accessories. Quality tested, throw away prices, and expert support.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
