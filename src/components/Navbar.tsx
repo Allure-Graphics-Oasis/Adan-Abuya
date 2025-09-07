@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, MessageCircle } from "lucide-react";
+import logo from "@/assets/LOGO.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,7 +27,7 @@ const Navbar = () => {
                 <span className="text-primary-foreground font-bold text-xl">DAWA</span>
               </div>
               <img 
-                src="/src/assets/LOGO.png" 
+                src={logo} 
                 alt="CA Logo" 
                 className="ml-2 h-8 w-auto object-contain"
               />
