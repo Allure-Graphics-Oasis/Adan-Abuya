@@ -87,7 +87,7 @@ const Index = () => {
                   </CardHeader>
                   <CardContent className="text-center">
                     <p className="text-muted-foreground mb-4">{category.description}</p>
-                    <p className="text-sm font-medium text-secondary">{category.count} items available</p>
+                    <p className="text-sm font-medium text-secondary">several items available</p>
                   </CardContent>
                 </Card>
               );
