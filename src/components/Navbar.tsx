@@ -21,14 +21,12 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-              <a href="/admin">
-            <div className="bg-gradient-primary p-2 rounded-lg">
+            <Link to="/admin" className="flex items-center">
+              <div className="bg-gradient-primary p-2 rounded-lg">
                 <span className="text-primary-foreground font-bold text-xl">DAWA</span>
               </div>
-              </a>
               <span className="ml-2 text-xl font-bold text-primary">CA</span>
-            
-            
+            </Link>
           </div>
           
 
