@@ -23,9 +23,6 @@ const Navbar = () => {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
-              <div className="bg-gradient-primary p-2 rounded-lg">
-                <span className="text-primary-foreground font-bold text-xl">DAWA</span>
-              </div>
               <img 
                 src={logo} 
                 alt="CA Logo" 
