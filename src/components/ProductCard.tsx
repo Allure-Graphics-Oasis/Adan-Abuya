@@ -62,9 +62,14 @@ const ProductCard = ({ product }: ProductCardProps) => {
         </p>
         
         {product.price && (
-          <p className="text-lg font-bold text-primary mb-3">
-            KES {product.price}
-          </p>
+          <div className="flex items-center justify-between mb-3">
+            <p className="text-lg font-bold text-primary">
+              KES {product.price}
+            </p>
+            <Badge variant="destructive" className="text-xs font-semibold animate-pulse">
+              ON OFFER
+            </Badge>
+          </div>
         )}
       </CardContent>
       
@@ -77,7 +82,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           </Button>
           <Button variant="secondary" size="sm" className="flex-1" asChild>
             <a 
-              href={`https://wa.me/+447914344843?text=Hi, I'm interested in: ${product.title}`}
+              href={`https://wa.me/+254114100019?text=Hi, I'm interested in: ${product.title}`}
               target="_blank"
               rel="noopener noreferrer"
             >

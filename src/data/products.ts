@@ -259,6 +259,43 @@ export const sampleProducts: Product[] = [
     image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&h=400&fit=crop",
     category: "Spare Parts",
     condition: "New"
+  },
+  {
+    id: "29",
+    title: "Commercial Cash Register System",
+    description: "Complete POS system with touch screen display, receipt printer, and cash drawer. Perfect for retail businesses.",
+    price: "25,000",
+    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=400&fit=crop",
+    category: "Business Equipment",
+    condition: "Excellent",
+    featured: true
+  },
+  {
+    id: "30",
+    title: "Office Printer - Multifunction",
+    description: "High-quality multifunction printer for office use. Print, scan, copy, and fax capabilities.",
+    price: "15,000",
+    image: "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400&h=400&fit=crop",
+    category: "Business Equipment",
+    condition: "Good"
+  },
+  {
+    id: "31",
+    title: "Commercial Security Camera System",
+    description: "4-channel security camera system with night vision and remote monitoring capabilities.",
+    price: "35,000",
+    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop",
+    category: "Business Equipment",
+    condition: "Excellent"
+  },
+  {
+    id: "32",
+    title: "Office Desk - Executive Style",
+    description: "Large executive desk with drawers and cable management. Perfect for professional offices.",
+    price: "12,000",
+    image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=400&fit=crop",
+    category: "Business Equipment",
+    condition: "Good"
   }
 ];
 
@@ -269,5 +306,6 @@ export const categories = [
   "Refrigeration",
   "Food Processing",
   "Baking & Cooking",
+  "Business Equipment",
   "General Equipment"
 ] as const;
