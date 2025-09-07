@@ -146,8 +146,8 @@ const ProductDetails = () => {
 				<p className="text-base text-foreground whitespace-pre-line">{product.description}</p>
 				<p className="text-sm">In stock: <span className="font-medium">{product.stock ?? 0}</span></p>
 				<div className="flex gap-2 pt-2">
-					<Button asChild variant="ghost"><a href="tel:+254700000000">Call</a></Button>
-					<Button asChild variant="secondary"><a href={`https://wa.me/254700000000?text=Hi, I'm interested in: ${product.title}`} target="_blank" rel="noopener noreferrer">WhatsApp</a></Button>
+					<Button asChild variant="ghost"><a href="tel:+254114100019">Call</a></Button>
+					<Button asChild variant="secondary"><a href={`https://wa.me/+254114100019?text=Hi, I'm interested in: ${product.title}`} target="_blank" rel="noopener noreferrer">WhatsApp</a></Button>
 					<Button asChild variant="outline"><Link to="/products">Back</Link></Button>
 				</div>
 			</div>
