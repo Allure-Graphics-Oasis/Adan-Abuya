@@ -20,26 +20,26 @@
   
   <!-- Individual Product Pages -->
   <url>
-    <loc>https://www.dawacoffeemachienesandaccessories.com/product/1</loc>
+    <loc>https://www.dawacoffeemachienesandaccessories.com/product/68bd789f3f4ef52df7c4c677</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&h=400&fit=crop</image:loc>
-      <image:title>Dawa Commercial Espresso Machine</image:title>
-      <image:caption>Professional 2-group espresso machine perfect for cafes and restaurants</image:caption>
+      <image:loc>https://dawa-coffee-machienes.onrender.com/api/images/68bdd56cc4ef9006fcdb5302</image:loc>
+      <image:title>Blizzard BAR2 Double-Door Bottle Cooler</image:title>
+      <image:caption>a robust, value-driven commercial bottle cooler</image:caption>
     </image:image>
   </url>
   
   <url>
-    <loc>https://www.dawacoffeemachienesandaccessories.com/product/2</loc>
+    <loc>https://www.dawacoffeemachienesandaccessories.com/product/68bd77af3f4ef52df7c4c653</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&h=400&fit=crop</image:loc>
-      <image:title>Dawa Coffee Grinder - Professional Grade</image:title>
-      <image:caption>Heavy-duty coffee grinder with precise grind settings</image:caption>
+      <image:loc>https://www.dawacoffeemachienesandaccessories.com/product/68bd77af3f4ef52df7c4c653</image:loc>
+      <image:title>Convection Gas Oven</image:title>
+      <image:caption>Gas oven at throw away price</image:caption>
     </image:image>
   </url>
   
@@ -56,14 +56,14 @@
   </url>
   
   <url>
-    <loc>https://www.dawacoffeemachienesandaccessories.com/product/4</loc>
+    <loc>https://www.dawacoffeemachienesandaccessories.com/product/68bd76933f4ef52df7c4c63f</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&h=400&fit=crop</image:loc>
-      <image:title>Dawa Coffee Machine Portafilter</image:title>
-      <image:caption>Professional portafilter for Dawa espresso machines</image:caption>
+      <image:loc>https://dawa-coffee-machienes.onrender.com/api/images/68bd768b3f4ef52df7c4c63a</image:loc>
+      <image:title>La Spaziale S5 Coffee machene</image:title>
+      <image:caption>Get The La Spaziale S5 at throw away price</image:caption>
     </image:image>
   </url>
   
@@ -298,13 +298,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-  
-  <!-- Admin Page (lower priority) -->
-  <url>
-    <loc>https://www.dawacoffeemachienesandaccessories.com/admin</loc>
-    <lastmod>2024-01-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
-  </url>
+
   
 </urlset>
