@@ -68,9 +68,15 @@ const About = () => {
                 </a>
               </Button>
               <Button variant="outline" size="lg" asChild>
+                <a href="tel:+254114100019">
+                  <Phone className="mr-2 h-5 w-5" />
+                  Contact Support
+                </a>
+              </Button>
+              <Button variant="outline" size="lg" asChild>
                 <a href="tel:+254720983015">
                   <Phone className="mr-2 h-5 w-5" />
-                  Call Now
+                  Other Contact
                 </a>
               </Button>
             </div>
