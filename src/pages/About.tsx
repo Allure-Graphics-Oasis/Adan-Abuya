@@ -59,7 +59,7 @@ const About = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <Button variant="secondary" size="lg" asChild>
                 <a 
-                  href="https://wa.me/+447914344843?text=Hi, I'd like to know more about your business"
+                  href="https://wa.me/+254114100019?text=Hi, I'd like to know more about your business"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -159,7 +159,7 @@ const About = () => {
             </Button>
             <Button variant="outline" size="lg" asChild>
               <a 
-                href="https://wa.me/+447914344843?text=Hi, I have specific equipment needs"
+                href="https://wa.me/+254114100019?text=Hi, I have specific equipment needs"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-primary-foreground/10 backdrop-blur border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground hover:text-primary"
