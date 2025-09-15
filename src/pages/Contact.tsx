@@ -80,7 +80,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground">Location</h3>
-                  <p className="text-muted-foreground">1st Avenue EastLeigh, Melawi road Bustan tower</p>
+                  <p className="text-muted-foreground">1st Avenue EastLeigh, Melawa road Bustan tower</p>
                   <p className="text-sm text-muted-foreground">Visit our service center by appointment</p>
                 </div>
               </div>
