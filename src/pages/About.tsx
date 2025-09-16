@@ -76,7 +76,7 @@ const About = () => {
               <Button variant="outline" size="lg" asChild>
                 <a href="tel:+254720983015">
                   <Phone className="mr-2 h-5 w-5" />
-                  Other Contact
+                  Other Contacts
                 </a>
               </Button>
             </div>
