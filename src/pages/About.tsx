@@ -177,7 +177,7 @@ const About = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="text-center">
             <p className="text-muted-foreground text-sm">
-              © 2020 <Link to="/admin" className="text-primary hover:underline">Allure Graphics Oasis Distributions</Link> | 
+              © 2020 <Link to="/" className="text-primary hover:underline">Allure Graphics Oasis Distributions</Link> | 
               Email: <a href="mailto:alluregraphicsoasis.co@gmail.com" className="text-primary hover:underline">alluregraphicsoasis.co@gmail.com</a> | 
               Support: <a href="tel:+254740275539" className="text-primary hover:underline">+254740275539</a>
             </p>
