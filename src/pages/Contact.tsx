@@ -5,7 +5,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { MessageCircle, Phone, Mail, MapPin, Clock } from "lucide-react";
 import { useState } from "react";
 
+
 const Contact = () => {
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -57,6 +59,8 @@ const Contact = () => {
   } catch (error) {
     console.error(error);
     alert("Something went wrong. Please try again later.");
+  }finally {
+    setLoading(false);
   }
 };
 
@@ -247,9 +251,9 @@ const Contact = () => {
                     />
                   </div>
                   
-                  <Button type="submit" variant="default" size="lg" className="w-full">
+                  <Button type="submit" disabled={loading} variant="default" size="lg" className="w-full">
                     <Mail className="h-4 w-4 mr-2" />
-                    Send Message
+                    {loading ? "Sending..." : "Send Message"}
                   </Button>
                 </form>
               </CardContent>
