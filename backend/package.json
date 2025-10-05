@@ -1,7 +1,7 @@
 {
   "name": "garissa-lodge-backend",
   "version": "1.0.0",
-  "description": "Backend API for Garissa Lodge equipment website",
+  "description": "Backend API for Dawa coffee machine website",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -30,6 +30,6 @@
     "equipment",
     "api"
   ],
-  "author": "Garissa Lodge",
+  "author": "Allure Graphics Oasis ",
   "license": "MIT"
 }

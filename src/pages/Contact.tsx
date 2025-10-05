@@ -3,13 +3,63 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { MessageCircle, Phone, Mail, MapPin, Clock } from "lucide-react";
+import { useState } from "react";
 
 const Contact = () => {
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted");
-  };
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: ""
+  });
+  const handleChange = (e) => {
+  const { id, value } = e.target;
+  setFormData((prev) => ({ ...prev, [id]: value }));
+};
+
+
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const res = await fetch("https://api.dawacoffeemachienesandaccessories.com/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: `${formData.firstName} ${formData.lastName}`,
+        email: formData.email,
+        subject: formData.subject,
+        message: `
+          Phone: ${formData.phone || "N/A"}
+          
+          ${formData.message}
+        `,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      alert("Message sent successfully!");
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+      });
+    } else {
+      alert(`Failed to send: ${data.message}`);
+    }
+  } catch (error) {
+    console.error(error);
+    alert("Something went wrong. Please try again later.");
+  }
+};
+
 
   return (
     <div className="min-h-screen bg-background">
@@ -142,13 +192,23 @@ const Contact = () => {
                       <label htmlFor="firstName" className="block text-sm font-medium text-foreground mb-2">
                         First Name
                       </label>
-                      <Input id="firstName" required />
+                      <Input
+                        id="firstName"
+                        value={formData.firstName}
+                        onChange={handleChange}
+                        required
+                      />
                     </div>
                     <div>
                       <label htmlFor="lastName" className="block text-sm font-medium text-foreground mb-2">
                         Last Name
                       </label>
-                      <Input id="lastName" required />
+                      <Input
+                        id="lastName"
+                        value={formData.lastName}
+                        onChange={handleChange}
+                        required
+                      />
                     </div>
                   </div>
                   
@@ -177,11 +237,13 @@ const Contact = () => {
                     <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
                       Message
                     </label>
-                    <Textarea 
-                      id="message" 
-                      rows={5} 
+                    <Textarea
+                      id="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      rows={5}
                       placeholder="Tell us about your coffee machine needs or issues..."
-                      required 
+                      required
                     />
                   </div>
                   
