@@ -1,5 +1,24 @@
 {
   "rewrites": [
     { "source": "/(.*)", "destination": "/" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*).xml",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, s-maxage=0, max-age=0, must-revalidate"
+        },
+        {
+          "key": "CDN-Cache-Control",
+          "value": "public, s-maxage=0, max-age=0, must-revalidate"
+        },
+        {
+          "key": "Vercel-CDN-Cache-Control",
+          "value": "public, s-maxage=0, max-age=0, must-revalidate"
+        }
+      ]
+    }
   ]
 }

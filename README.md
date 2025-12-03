@@ -1,4 +1,4 @@
-# Garissa Lodge Equipment Website
+# Dawa Coffee machines and Business Equipment Website
 
 A full-stack equipment marketplace website with admin panel for managing products and images.
 
