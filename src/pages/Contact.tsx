@@ -81,7 +81,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground">Phone</h3>
-                  <p className="text-muted-foreground">+254 112 100 019 or +44 7914 344843</p>
+                  <p className="text-muted-foreground">+254 114 100 019 or +44 7914 344843</p>
                   <p className="text-sm text-muted-foreground">Call us for immediate assistance</p>
                 </div>
               </div>
@@ -95,7 +95,7 @@ const Contact = () => {
                   <p className="text-muted-foreground">+254 112 100 019</p>
                   <Button variant="secondary" size="sm" className="mt-2" asChild>
                     <a 
-                      href="https://wa.me/+254112100019?text=Hi, I'd like to inquire about your equipment"
+                      href="https://wa.me/+254114100019?text=Hi, I'd like to inquire about your equipment"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -149,7 +149,7 @@ const Contact = () => {
               <CardContent>
                 <div className="flex flex-col sm:flex-row gap-3">
                   <Button variant="default" className="flex-1" asChild>
-                    <a href="tel:+254112100019">
+                    <a href="tel:+254114100019">
                       <Phone className="h-4 w-4 mr-2" />
                       Call Now
                     </a>
@@ -162,7 +162,7 @@ const Contact = () => {
                   </Button>
                   <Button variant="secondary" className="flex-1" asChild>
                     <a 
-                      href="https://wa.me/254112100019?text=Hi, I need help finding equipment"
+                      href="https://wa.me/254114100019?text=Hi, I need help finding equipment"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
