@@ -93,6 +93,7 @@ const Admin = () => {
 	const [newUsername, setNewUsername] = useState("");
 	const [usernameCurrentPassword, setUsernameCurrentPassword] = useState("");
 	const [isChangingUsername, setIsChangingUsername] = useState(false);
+	const [isLoggingIn, setIsLoggingIn] = useState<boolean>(false);
 
 	useEffect(() => {
 		const checkAuth = async () => {
@@ -110,12 +111,14 @@ const Admin = () => {
 	}, []);
 
 	const doLogin = async () => {
+		setIsLoggingIn(true);
 		try {
 			const response = await apiClient.login(email, password);
 			setIsAuthed(true);
 			setUser(response.user);
 		} catch (err) {
 			alert(err instanceof Error ? err.message : "Login failed");
+			setIsLoggingIn(false);
 		}
 	};
 
@@ -317,7 +320,7 @@ const Admin = () => {
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}
 						/>
-						<Button onClick={doLogin} className="w-full">Login</Button>
+						<Button onClick={doLogin} className="w-full">{isLoggingIn ? "please wait..." : "Login"}</Button>
 						<p className="text-xs text-muted-foreground">Use admin or merchant credentials</p>
 					</CardContent>
 				</Card>
